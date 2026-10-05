@@ -72,6 +72,54 @@ header {
   transition: background 0.15s;
 }
 .toolbar-actions button:hover { background: var(--btn-hover); }
+
+/* === Export dropdown === */
+.export-dropdown {
+  position: relative;
+  display: flex;
+}
+.export-dropdown > #export-btn {
+  border-radius: 6px 0 0 6px;
+  border-right: none;
+}
+.export-dropdown > #export-toggle {
+  background: var(--btn-bg);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--header-text);
+  padding: 4px 6px;
+  border-radius: 0 6px 6px 0;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.export-dropdown > #export-toggle:hover { background: var(--btn-hover); }
+.export-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--pane-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+  min-width: 150px;
+  overflow: hidden;
+}
+.export-menu.open { display: flex; flex-direction: column; }
+.export-menu button {
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+}
+.export-menu button:hover { background: var(--btn-hover); }
+[data-theme="dark"] .export-menu { box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 .toggle-label {
   display: flex;
   align-items: center;

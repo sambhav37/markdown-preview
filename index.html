@@ -15,7 +15,14 @@
           <button id="open-btn" type="button">Open</button>
           <input type="file" id="file-input" accept=".md,.markdown,.txt" hidden />
           <button id="copy-btn" type="button">Copy</button>
-          <button id="export-btn" type="button">Export PDF</button>
+          <div class="export-dropdown">
+            <button id="export-btn" type="button">Export PDF</button>
+            <button id="export-toggle" type="button" aria-label="Export options">&#9662;</button>
+            <div class="export-menu" id="export-menu">
+              <button data-format="pdf">Export as PDF</button>
+              <button data-format="docx">Export as DOCX</button>
+            </div>
+          </div>
           <button id="reset-btn" type="button">Reset</button>
           <label class="toggle-label"><input type="checkbox" id="sync-scroll-cb" checked /><span>Sync scroll</span></label>
           <label class="toggle-label"><input type="checkbox" id="dark-mode-cb" /><span>Dark mode</span></label>
