@@ -16,38 +16,14 @@ function exportPdf() {
   });
 }
 
-function exportDocx() {
+async function exportDocx() {
   const preview = document.getElementById('preview')!;
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const bg = isDark ? '#0d1117' : '#ffffff';
-  const fg = isDark ? '#c9d1d9' : '#1f2328';
-
-  const content = `
-    <html xmlns:o="urn:schemas-microsoft-com:office:office"
-          xmlns:w="urn:schemas-microsoft-com:office:word"
-          xmlns="http://www.w3.org/TR/REC-html40">
-    <head><meta charset="utf-8">
-    <style>
-      body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: ${fg}; background: ${bg}; line-height: 1.6; padding: 20px; }
-      h1 { font-size: 2em; border-bottom: 1px solid #d0d7de; padding-bottom: .3em; }
-      h2 { font-size: 1.5em; border-bottom: 1px solid #d0d7de; padding-bottom: .3em; }
-      h3 { font-size: 1.25em; }
-      pre { background: #f6f8fa; padding: 16px; border-radius: 6px; font-size: 85%; }
-      code { font-family: Consolas, monospace; font-size: 85%; }
-      blockquote { border-left: 4px solid #d0d7de; padding-left: 16px; color: #656d76; }
-      table { border-collapse: collapse; width: 100%; }
-      th, td { padding: 6px 13px; border: 1px solid #d0d7de; }
-      th { font-weight: 600; background: #f6f8fa; }
-      img { max-width: 100%; }
-    </style></head>
-    <body>${preview.innerHTML}</body>
-    </html>`;
-
-  const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+  const { generateDocx } = await import('./html-to-docx');
+  const blob = await generateDocx(preview);
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'markdown-export.doc';
+  a.download = 'markdown-export.docx';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
